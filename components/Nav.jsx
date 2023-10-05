@@ -23,7 +23,7 @@ const Nav = () => {
         <Image
           src='/assets/images/logo.svg'
           alt='Noteify Logo'
-          cLassName='object-contain'
+          className='object-contain'
           width={30}
           height={30}
         />
