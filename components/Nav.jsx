@@ -6,16 +6,16 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 import Image from 'next/image'
 
 const Nav = () => {
-  const isUserLoggedIn = true
+  const { data: session } = useSession()
 
   const [providers, setProviders] = useState(null)
   const [toggleProfile, setToggleProfile] = useState(false)
   useEffect(() => {
-    const setProviders = async () => {
+    const callProviders = async () => {
       const response = await getProviders()
       setProviders(response)
     }
-    setProviders()
+    callProviders()
   }, [])
   return (
     <nav className='w-full flex-between mb-16 pt-3'>
@@ -31,14 +31,14 @@ const Nav = () => {
 
       {/* Mobile Navbar */}
       <div className='flex relative sm:hidden'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex'>
             <Image
-              src='/assets/images/logo.svg'
+              src={session?.user.image}
               alt='Noteify Logo'
-              cLassName='rounded-full'
-              width={37}
-              height={37}
+              className='rounded-full'
+              width={40}
+              height={40}
               onClick={() => setToggleProfile((prev) => !prev)}
             />
             {toggleProfile && (
@@ -88,7 +88,7 @@ const Nav = () => {
 
       {/* Desktop Navbar */}
       <div className='sm:flex hidden'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create' className='black_btn'>
               Create Note
@@ -98,9 +98,9 @@ const Nav = () => {
             </button>
             <Link href='/profile'>
               <Image
-                src='/assets/images/logo.svg'
+                src={session?.user.image}
                 alt='Noteify Logo'
-                cLassName='rounded-full'
+                className='rounded-full'
                 width={37}
                 height={37}
               />
