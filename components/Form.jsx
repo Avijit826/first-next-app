@@ -31,7 +31,7 @@ const Form = ({ type, note, setNote, submitting, handleSubmit }) => {
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Type of note{' '}
             <span className='font-normal'>
-              (#product, #webdevelopment, #idea, etc.)
+              (product, webdevelopment, idea, etc.)
             </span>
           </span>
           <input

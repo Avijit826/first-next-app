@@ -1,3 +1,5 @@
+import Feed from '@components/Feed'
+
 const Home = () => {
   return (
     <section className='w-full flex-col flex-center'>
@@ -14,6 +16,7 @@ const Home = () => {
         Across Devices, Collaborate with Others, or Share Them with the World,
         Note It Has You Covered.
       </p>
+      <Feed />
     </section>
   )
 }
